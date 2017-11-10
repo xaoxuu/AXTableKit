@@ -8,8 +8,8 @@
 
 #import "AXTableView.h"
 #import "AXTableViewCell.h"
-#import "AXDefaultVC.h"
 
+static CGFloat defaultRowHeight = 44;
 
 
 @interface AXTableView () <UIScrollViewDelegate>
@@ -20,6 +20,11 @@
 @property (strong, nonatomic) NSObject<AXTableModel> *dataList;
 
 @property (copy, nonatomic) NSString *modelClassName;
+
+/**
+ 复用id，如果自定义cell，需要将此值设置为cell的NibName
+ */
+@property (copy, nonatomic) NSString *reuseIdentifier;
 
 @end
 
@@ -46,8 +51,8 @@
         
         
         // load finished
-        if ([self respondsToSelector:@selector(tableViewDidLoadFinished:)]) {
-            [self tableViewDidLoadFinished:self];
+        if ([self respondsToSelector:@selector(ax_tableViewDidLoadFinished:)]) {
+            [self ax_tableViewDidLoadFinished:self];
         }
     }
     return self;
@@ -58,11 +63,11 @@
     self.reuseIdentifier = NSStringFromClass([AXTableViewCell class]);
     self.modelClassName = NSStringFromClass(AXTableModel.class);
     
-    if ([self.delegate respondsToSelector:@selector(tableViewRegisterReuseableCell)]) {
-        self.reuseIdentifier = NSStringFromClass([self tableViewRegisterReuseableCell].class);
+    if ([self.delegate respondsToSelector:@selector(ax_tableViewRegisterReuseableCell)]) {
+        self.reuseIdentifier = NSStringFromClass([self ax_tableViewRegisterReuseableCell].class);
     }
-    if ([self.delegate respondsToSelector:@selector(tableViewRegisterTableModel)]) {
-        self.modelClassName = NSStringFromClass([self tableViewRegisterTableModel].class);
+    if ([self.delegate respondsToSelector:@selector(ax_tableViewRegisterTableModel)]) {
+        self.modelClassName = NSStringFromClass([self ax_tableViewRegisterTableModel].class);
     }
 }
 
@@ -105,45 +110,16 @@
     });
 }
 
-
-/**
- 尝试从与类同名的json文件中加载数据源
-
- @param dataSource 数据源
- */
-//- (void)tableViewDataSource:(void (^)(NSObject<AXTableModel> *))dataSource{
-//    // @xaoxuu: 尝试从与类同名的json文件中加载数据源
-//    NSString *path = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@".json"];
-//    NSData *data = [NSData dataWithContentsOfFile:path];
-//    if (!data) {
-//        return;
-//    }
-//    NSError *error;
-//    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-//    if (!dict) {
-//#if DEBUG
-//        if (error) {
-//            NSLog(@"load data source error: %@", error.description);
-//        }
-//#endif
-//        return;
-//    }
-//    AXTableModel *model = [AXTableModel modelWithDictionary:dict];
-//    if (dataSource) {
-//        dataSource(model);
-//    }
-//}
-
-
-- (NSObject<AXTableSectionModel> *)tableViewSectionModel:(NSInteger)section{
-    return self.dataList.sections[section];
+- (AXTableSectionModelType *)ax_sectionModelForIndexPath:(NSIndexPath *)indexPath{
+    return self.dataList.sections[indexPath.section];
 }
 
-- (NSObject<AXTableRowModel> *)tableViewRowModel:(NSIndexPath *)indexPath{
+- (AXTableRowModelType *)ax_rowModelForIndexPath:(NSIndexPath *)indexPath{
     return self.dataList.sections[indexPath.section].rows[indexPath.row];
 }
 
-- (void)deleteCellWithIndexPath:(NSIndexPath *)indexPath{
+
+- (void)ax_deleteCellWithIndexPath:(NSIndexPath *)indexPath{
     [self.dataList.sections[indexPath.section].rows removeObjectAtIndex:indexPath.row];
     [self deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -153,11 +129,11 @@
 
 - (NSObject<AXTableModel> *)dataList{
     if (!_dataList) {
-        if ([self respondsToSelector:@selector(tableViewPreloadDataSource)]) {
-            _dataList = [self tableViewPreloadDataSource];
+        if ([self respondsToSelector:@selector(ax_tableViewPreloadDataSource)]) {
+            _dataList = [self ax_tableViewPreloadDataSource];
         }
-        if ([self respondsToSelector:@selector(tableViewDataSource:)]) {
-            [self tableViewDataSource:^(NSObject<AXTableModel> *dataSource) {
+        if ([self respondsToSelector:@selector(ax_tableViewDataSource:)]) {
+            [self ax_tableViewDataSource:^(NSObject<AXTableModel> *dataSource) {
                 _dataList = dataSource;
                 [self reloadData];
             }];
@@ -198,21 +174,31 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSUInteger section = indexPath.section;
-    NSUInteger row = indexPath.row;
+   
+    AXTableSectionModelType *section = self.dataList.sections[indexPath.section];
+    AXTableRowModelType *model = section.rows[indexPath.row];
+    AXTableViewCellType *cell = [tableView dequeueReusableCellWithIdentifier:self.reuseIdentifier];
     
-    NSObject<AXTableRowModel> *model = self.dataList.sections[section].rows[row];
-    UITableViewCell<AXTableViewCell> *cell = [tableView dequeueReusableCellWithIdentifier:self.reuseIdentifier];
+    
     
     
     // @xaoxuu: 即将设置模型
-    if ([self respondsToSelector:@selector(indexPath:cell:willSetModel:)]) {
-        [self indexPath:indexPath cell:cell willSetModel:model];
+    if ([self respondsToSelector:@selector(ax_tableViewCell:willSetModel:forRowAtIndexPath:)]) {
+        [self ax_tableViewCell:cell willSetModel:model forRowAtIndexPath:indexPath];
     }
     // @xaoxuu: 设置模型
     if ([cell respondsToSelector:@selector(setModel:)]) {
         cell.model = model;
     }
+    
+    // @xaoxuu: 自定义icon
+    if ([self respondsToSelector:@selector(ax_tableViewCellIcon:forRowAtIndexPath:)] && [cell respondsToSelector:@selector(icon)]) {
+        [self ax_tableViewCellIcon:^(UIImage *icon) {
+            cell.icon.image = icon;
+        } forRowAtIndexPath:indexPath];
+    }
+    
+    
     
     
     return cell;
@@ -225,13 +211,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSUInteger section = indexPath.section;
     NSUInteger row = indexPath.row;
-    NSObject<AXTableRowModel> *model = self.dataList.sections[section].rows[row];
+    AXTableRowModelType *model = self.dataList.sections[section].rows[row];
     if (!model) {
         return;
     }
     // @xaoxuu: selection action
-    if ([self respondsToSelector:@selector(indexPath:didSelected:)]) {
-        [self indexPath:indexPath didSelected:model];
+    if ([self respondsToSelector:@selector(ax_tableViewDidSelectedRowAtIndexPath:)]) {
+        [self ax_tableViewDidSelectedRowAtIndexPath:indexPath];
         return;
     }
     
@@ -240,26 +226,57 @@
     if (vc) {
         vc.title = NSLocalizedString(model.title, nil);
         [self _indexPath:indexPath tryPush:vc withModel:model];
-    } else if (model.target.length) {
-        // @xaoxuu: push default vc
-        AXDefaultVC *vc = [[AXDefaultVC alloc] init];
-        vc.title = NSLocalizedString(model.title, nil);
-        [vc setDetail: NSLocalizedString(model.detail, nil)];
-        [self _indexPath:indexPath tryPush:vc withModel:model];
+    } else if ([model.target containsString:@"http"]) {
+        if (@available(iOS 10.0, *)) {
+            // on newer versions
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.target] options:@{} completionHandler:nil];
+        } else {
+            // Fallback on earlier versions
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.target]];
+        }
     }
     
 }
 
 
-- (void)_indexPath:(NSIndexPath *)indexPath tryPush:(UIViewController *)targetVC withModel:(NSObject<AXTableRowModel> *)model{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    AXTableRowModelType *row = self.dataList.sections[indexPath.section].rows[indexPath.row];
+    if ([row respondsToSelector:@selector(rowHeight)]) {
+        return row.rowHeight;
+    } else {
+        return defaultRowHeight;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    AXTableSectionModelType *sec = self.dataList.sections[section];
+    if ([sec respondsToSelector:@selector(headerHeight)]) {
+        return sec.headerHeight;
+    } else {
+        return defaultRowHeight;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section{
+    AXTableSectionModelType *sec = self.dataList.sections[section];
+    if ([sec respondsToSelector:@selector(headerHeight)]) {
+        return sec.headerHeight;
+    } else {
+        return defaultRowHeight;
+    }
+}
+
+
+
+- (void)_indexPath:(NSIndexPath *)indexPath tryPush:(UIViewController *)targetVC withModel:(AXTableRowModelType *)model{
     void (^block_push)(void) = ^{
-        if ([self respondsToSelector:@selector(indexPath:willPush:)]) {
-            [self indexPath:indexPath willPush:targetVC];
+        if ([self respondsToSelector:@selector(ax_tableViewWillPushToViewController:fromRowAtIndexPath:)]) {
+            [self ax_tableViewWillPushToViewController:targetVC fromRowAtIndexPath:indexPath];
         }
         [self.controller.navigationController pushViewController:targetVC animated:YES];
     };
-    if ([self respondsToSelector:@selector(indexPath:shouldPush:)]) {
-        if ([self indexPath:indexPath shouldPush:targetVC]) {
+    if ([self respondsToSelector:@selector(ax_tableViewShouldPushToViewController:fromRowAtIndexPath:)]) {
+        if ([self ax_tableViewShouldPushToViewController:targetVC fromRowAtIndexPath:indexPath]) {
             block_push();
         }
     } else {
@@ -269,7 +286,7 @@
 
 #pragma mark - AXTableKit的协议
 
-- (NSObject<AXTableModel> *)tableViewPreloadDataSource{
+- (NSObject<AXTableModel> *)ax_tableViewPreloadDataSource{
     NSString *path = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@".json"];
     return [self loadModelFromPath:path];
 }

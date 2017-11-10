@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AXTableViewProtocol.h"
+#import "AXTableKitProtocol.h"
 
 @class AXTableSectionModel,AXTableRowModel;
 
@@ -118,9 +118,20 @@
 @property (copy, nonatomic) NSString *icon;
 
 /**
- 跳转到某控制器
+ 要跳转的地方，可以是ViewController的名字，也可以是一个网址
  */
 @property (copy, nonatomic) NSString *target;
+
+/**
+ row height
+ */
+@property (assign, nonatomic) CGFloat rowHeight;
+
+
+/**
+ accessory
+ */
+@property (assign, nonatomic) UITableViewCellAccessoryType accessoryType;
 
 + (instancetype)modelWithDictionary:(NSDictionary *)dict;
 

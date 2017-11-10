@@ -150,6 +150,7 @@
         model.headerHeight = [dict doubleValueForKey:@"headerHeight"];
         model.footerTitle = [dict stringValueForKey:@"footerTitle"];
         model.footerHeight = [dict doubleValueForKey:@"footerHeight"];
+        model.rowHeight = [dict doubleValueForKey:@"rowHeight"];
         NSArray<NSDictionary *> *rows = [dict arrayValueForKey:@"rows"];
         [rows enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [model.rows addObject:[AXTableRowModel modelWithDictionary:obj]];
@@ -168,6 +169,8 @@
         _detail = @"";
         _icon = @"";
         _target = @"";
+        _rowHeight = 44;
+        _accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return self;
 }
@@ -180,6 +183,15 @@
         model.detail = [dict stringValueForKey:@"detail"];
         model.icon = [dict stringValueForKey:@"icon"];
         model.target = [dict stringValueForKey:@"target"];
+        CGFloat rowHeight = [dict doubleValueForKey:@"rowHeight"];
+        if (rowHeight) {
+            model.rowHeight = rowHeight;
+        }
+        if (model.target.length) {
+            model.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else {
+            model.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
     return model;
 }

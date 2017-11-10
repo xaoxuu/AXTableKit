@@ -8,21 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "AXTableModel.h"
-#import "AXTableViewProtocol.h"
+#import "AXTableKitProtocol.h"
 
 
 @interface AXTableView : UITableView <AXTableView>
 
 
+
 /**
- 复用id，如果自定义cell，需要将此值设置为cell的NibName
+ 获取数据
+
+ @return 数据
  */
-@property (copy, nonatomic) NSString *reuseIdentifier;
-
-// @xaoxuu: bg
-//@property (strong, nonatomic) UIColor *backgroundColor;
-
-
+- (AXTableModelType *)dataList;
 
 /**
  刷新tableView
@@ -47,8 +45,24 @@
  
  @param indexPath 索引
  */
-//- (void)deleteCellWithIndexPath:(NSIndexPath *)indexPath;
+- (void)ax_deleteCellWithIndexPath:(NSIndexPath *)indexPath;
 
+
+/**
+ 根据索引获取组模型
+ 
+ @param indexPath 索引
+ @return 组模型
+ */
+- (AXTableSectionModelType *)ax_sectionModelForIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ 根据索引获取row模型
+ 
+ @param indexPath 索引
+ @return row模型
+ */
+- (AXTableRowModelType *)ax_rowModelForIndexPath:(NSIndexPath *)indexPath;
 
 
 @end

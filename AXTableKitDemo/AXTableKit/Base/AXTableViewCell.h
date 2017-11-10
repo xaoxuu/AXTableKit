@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AXTableViewProtocol.h"
+#import "AXTableKitProtocol.h"
 
 
 @interface AXTableViewCell : UITableViewCell <AXTableViewCell>
@@ -16,7 +16,6 @@
 @property (strong, readwrite, nonatomic) NSObject<AXTableRowModel> *model;
 
 // @xaoxuu: image
-@property (strong, readonly, nonatomic) UIImage *icon;
-
+@property (strong, readonly, nonatomic) UIImageView *icon;
 
 @end

@@ -24,6 +24,8 @@
     
     self.tableView = [[MyTableView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.tableView];
+    
+    
 }
 
 
@@ -32,6 +34,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc{
+    NSLog(@"dealloc");
+}
 
 
 

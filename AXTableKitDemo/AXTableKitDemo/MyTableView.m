@@ -18,4 +18,23 @@
 }
 */
 
+
+- (void)ax_tableViewCell:(AXTableViewCellType *)cell willSetModel:(AXTableRowModelType *)model forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 1) {
+        if ([model respondsToSelector:@selector(setAccessoryType:)]) {
+            model.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+    } else if (indexPath.section == 2) {
+        if ([model respondsToSelector:@selector(setAccessoryType:)]) {
+            model.accessoryType = UITableViewCellAccessoryDetailButton;
+        }
+    } else if (indexPath.section == 3) {
+        if ([model respondsToSelector:@selector(setAccessoryType:)]) {
+            model.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+        }
+    }
+    
+}
+
+
 @end

@@ -1,24 +1,22 @@
 //
-//  AXDefaultVC.m
-//  AXTableKit
+//  NewViewController.m
+//  AXTableKitDemo
 //
-//  Created by xaoxuu on 27/10/2017.
+//  Created by xaoxuu on 10/11/2017.
 //  Copyright © 2017 xaoxuu. All rights reserved.
 //
 
-#import "AXDefaultVC.h"
+#import "NewViewController.h"
 
-@interface AXDefaultVC ()
+@interface NewViewController ()
 
 @end
 
-@implementation AXDefaultVC
+@implementation NewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    self.lb_title.text = self.title;
-//    self.lb_detail.text = self.detail;
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
