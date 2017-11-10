@@ -170,7 +170,7 @@
         _icon = @"";
         _target = @"";
         _rowHeight = 44;
-        _accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        _accessoryType = UITableViewCellAccessoryNone;
     }
     return self;
 }

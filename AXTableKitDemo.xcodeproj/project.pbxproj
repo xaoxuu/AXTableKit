@@ -30,6 +30,7 @@
 		CDDFA3A11FB592EC004C99D5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3A01FB592EC004C99D5 /* RootViewController.m */; };
 		CDDFA3A51FB5A2A5004C99D5 /* NewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3A31FB5A2A5004C99D5 /* NewViewController.m */; };
 		CDDFA3A61FB5A2A5004C99D5 /* NewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3A41FB5A2A5004C99D5 /* NewViewController.xib */; };
+		CDDFA3A81FB5ABB0004C99D5 /* MyTableView2.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3A71FB5ABB0004C99D5 /* MyTableView2.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		CDDFA3A21FB5A2A5004C99D5 /* NewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewViewController.h; sourceTree = "<group>"; };
 		CDDFA3A31FB5A2A5004C99D5 /* NewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewViewController.m; sourceTree = "<group>"; };
 		CDDFA3A41FB5A2A5004C99D5 /* NewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewViewController.xib; sourceTree = "<group>"; };
+		CDDFA3A71FB5ABB0004C99D5 /* MyTableView2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MyTableView2.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				CDDFA3971FB54B91004C99D5 /* MyTableView.h */,
 				CDDFA3981FB54B91004C99D5 /* MyTableView.m */,
 				CDDFA3951FB54A00004C99D5 /* MyTableView.json */,
+				CDDFA3A71FB5ABB0004C99D5 /* MyTableView2.json */,
 				CDDFA3A21FB5A2A5004C99D5 /* NewViewController.h */,
 				CDDFA3A31FB5A2A5004C99D5 /* NewViewController.m */,
 				CDDFA3A41FB5A2A5004C99D5 /* NewViewController.xib */,
@@ -278,6 +281,7 @@
 			files = (
 				CDDFA39E1FB559C3004C99D5 /* MyTableViewCell.xib in Resources */,
 				CDDFA3A61FB5A2A5004C99D5 /* NewViewController.xib in Resources */,
+				CDDFA3A81FB5ABB0004C99D5 /* MyTableView2.json in Resources */,
 				CD5497E31FA33733002AEDE7 /* LaunchScreen.storyboard in Resources */,
 				CD5497E01FA33733002AEDE7 /* Assets.xcassets in Resources */,
 				CDDFA3961FB54A00004C99D5 /* MyTableView.json in Resources */,

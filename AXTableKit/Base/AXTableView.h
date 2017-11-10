@@ -65,4 +65,19 @@
 - (AXTableRowModelType *)ax_rowModelForIndexPath:(NSIndexPath *)indexPath;
 
 
+/**
+ 从bundle中加载数据源（需要与本类同名的json文件）
+
+ @return 数据源
+ */
+- (NSObject<AXTableModel> *)ax_loadDataSourceFromBundle;
+
+/**
+ 从指定路径加载数据源
+
+ @param path 路径
+ @return 数据源
+ */
+- (NSObject<AXTableModel> *)ax_loadDataSourceFromPath:(NSString *)path;
+
 @end

@@ -125,6 +125,13 @@ static CGFloat defaultRowHeight = 44;
 }
 
 
+- (NSObject<AXTableModel> *)ax_loadDataSourceFromBundle{
+    NSString *path = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@".json"];
+    return [self ax_loadDataSourceFromPath:path];
+}
+
+
+
 #pragma mark - priv
 
 - (NSObject<AXTableModel> *)dataList{
@@ -142,7 +149,7 @@ static CGFloat defaultRowHeight = 44;
     return _dataList;
 }
 
-- (NSObject<AXTableModel> *)loadModelFromPath:(NSString *)path{
+- (NSObject<AXTableModel> *)ax_loadDataSourceFromPath:(NSString *)path{
     NSData *data = [NSData dataWithContentsOfFile:path];
     if (!data) {
         return nil;
@@ -287,8 +294,7 @@ static CGFloat defaultRowHeight = 44;
 #pragma mark - AXTableKit的协议
 
 - (NSObject<AXTableModel> *)ax_tableViewPreloadDataSource{
-    NSString *path = [[NSBundle mainBundle] pathForResource:NSStringFromClass([self class]) ofType:@".json"];
-    return [self loadModelFromPath:path];
+    return [self ax_loadDataSourceFromBundle];
 }
 
 #pragma mark - extension
