@@ -22,15 +22,13 @@
 		CD5498051FA3379B002AEDE7 /* AXTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5498031FA3379B002AEDE7 /* AXTableViewCell.m */; };
 		CD5498081FA337A8002AEDE7 /* AXTableModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CD5498061FA337A8002AEDE7 /* AXTableModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD5498091FA337A8002AEDE7 /* AXTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5498071FA337A8002AEDE7 /* AXTableModel.m */; };
-		CD54980C1FA3381D002AEDE7 /* AXSimpleTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = CD54980A1FA3381D002AEDE7 /* AXSimpleTableView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD54980D1FA3381D002AEDE7 /* AXSimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CD54980B1FA3381D002AEDE7 /* AXSimpleTableView.m */; };
-		CD5498111FA344C1002AEDE7 /* AXSimpleTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = CD54980F1FA344C1002AEDE7 /* AXSimpleTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD5498121FA344C1002AEDE7 /* AXSimpleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5498101FA344C1002AEDE7 /* AXSimpleTableViewCell.m */; };
-		CD71390D1FA34784005C5214 /* Test2.m in Sources */ = {isa = PBXBuildFile; fileRef = CD71390C1FA34784005C5214 /* Test2.m */; };
-		CD7139101FA347DB005C5214 /* Test1.m in Sources */ = {isa = PBXBuildFile; fileRef = CD71390F1FA347DB005C5214 /* Test1.m */; };
 		CD7139131FA3571A005C5214 /* AXDefaultVC.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7139111FA3571A005C5214 /* AXDefaultVC.h */; };
 		CD7139141FA3571A005C5214 /* AXDefaultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7139121FA3571A005C5214 /* AXDefaultVC.m */; };
 		CD7139161FA3575F005C5214 /* AXTableViewProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7139151FA3575F005C5214 /* AXTableViewProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CDDFA3961FB54A00004C99D5 /* MyTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3951FB54A00004C99D5 /* MyTableView.json */; };
+		CDDFA3991FB54B91004C99D5 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3981FB54B91004C99D5 /* MyTableView.m */; };
+		CDDFA39D1FB559C3004C99D5 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA39B1FB559C3004C99D5 /* MyTableViewCell.m */; };
+		CDDFA39E1FB559C3004C99D5 /* MyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA39C1FB559C3004C99D5 /* MyTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,17 +75,15 @@
 		CD5498031FA3379B002AEDE7 /* AXTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXTableViewCell.m; sourceTree = "<group>"; };
 		CD5498061FA337A8002AEDE7 /* AXTableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXTableModel.h; sourceTree = "<group>"; };
 		CD5498071FA337A8002AEDE7 /* AXTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXTableModel.m; sourceTree = "<group>"; };
-		CD54980A1FA3381D002AEDE7 /* AXSimpleTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXSimpleTableView.h; sourceTree = "<group>"; };
-		CD54980B1FA3381D002AEDE7 /* AXSimpleTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXSimpleTableView.m; sourceTree = "<group>"; };
-		CD54980F1FA344C1002AEDE7 /* AXSimpleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXSimpleTableViewCell.h; sourceTree = "<group>"; };
-		CD5498101FA344C1002AEDE7 /* AXSimpleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXSimpleTableViewCell.m; sourceTree = "<group>"; };
-		CD71390B1FA34784005C5214 /* Test2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test2.h; sourceTree = "<group>"; };
-		CD71390C1FA34784005C5214 /* Test2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test2.m; sourceTree = "<group>"; };
-		CD71390E1FA347DB005C5214 /* Test1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test1.h; sourceTree = "<group>"; };
-		CD71390F1FA347DB005C5214 /* Test1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test1.m; sourceTree = "<group>"; };
 		CD7139111FA3571A005C5214 /* AXDefaultVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXDefaultVC.h; sourceTree = "<group>"; };
 		CD7139121FA3571A005C5214 /* AXDefaultVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXDefaultVC.m; sourceTree = "<group>"; };
 		CD7139151FA3575F005C5214 /* AXTableViewProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXTableViewProtocol.h; sourceTree = "<group>"; };
+		CDDFA3951FB54A00004C99D5 /* MyTableView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MyTableView.json; sourceTree = "<group>"; };
+		CDDFA3971FB54B91004C99D5 /* MyTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTableView.h; sourceTree = "<group>"; };
+		CDDFA3981FB54B91004C99D5 /* MyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTableView.m; sourceTree = "<group>"; };
+		CDDFA39A1FB559C3004C99D5 /* MyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		CDDFA39B1FB559C3004C99D5 /* MyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		CDDFA39C1FB559C3004C99D5 /* MyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,10 +130,12 @@
 				CD5497D71FA33733002AEDE7 /* AppDelegate.m */,
 				CD5497D91FA33733002AEDE7 /* ViewController.h */,
 				CD5497DA1FA33733002AEDE7 /* ViewController.m */,
-				CD71390E1FA347DB005C5214 /* Test1.h */,
-				CD71390F1FA347DB005C5214 /* Test1.m */,
-				CD71390B1FA34784005C5214 /* Test2.h */,
-				CD71390C1FA34784005C5214 /* Test2.m */,
+				CDDFA3971FB54B91004C99D5 /* MyTableView.h */,
+				CDDFA3981FB54B91004C99D5 /* MyTableView.m */,
+				CDDFA3951FB54A00004C99D5 /* MyTableView.json */,
+				CDDFA39A1FB559C3004C99D5 /* MyTableViewCell.h */,
+				CDDFA39B1FB559C3004C99D5 /* MyTableViewCell.m */,
+				CDDFA39C1FB559C3004C99D5 /* MyTableViewCell.xib */,
 				CD5497DC1FA33733002AEDE7 /* Main.storyboard */,
 				CD5497DF1FA33733002AEDE7 /* Assets.xcassets */,
 				CD5497E11FA33733002AEDE7 /* LaunchScreen.storyboard */,
@@ -152,7 +150,6 @@
 			children = (
 				CD5497F31FA33746002AEDE7 /* AXTableKit.h */,
 				CD54980E1FA33829002AEDE7 /* Base */,
-				CD71390A1FA345C7005C5214 /* Simple */,
 				CD5497F41FA33746002AEDE7 /* Info.plist */,
 			);
 			path = AXTableKit;
@@ -174,17 +171,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		CD71390A1FA345C7005C5214 /* Simple */ = {
-			isa = PBXGroup;
-			children = (
-				CD54980A1FA3381D002AEDE7 /* AXSimpleTableView.h */,
-				CD54980B1FA3381D002AEDE7 /* AXSimpleTableView.m */,
-				CD54980F1FA344C1002AEDE7 /* AXSimpleTableViewCell.h */,
-				CD5498101FA344C1002AEDE7 /* AXSimpleTableViewCell.m */,
-			);
-			path = Simple;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -197,9 +183,7 @@
 				CD5498081FA337A8002AEDE7 /* AXTableModel.h in Headers */,
 				CD5498001FA3378D002AEDE7 /* AXTableView.h in Headers */,
 				CD7139161FA3575F005C5214 /* AXTableViewProtocol.h in Headers */,
-				CD5498111FA344C1002AEDE7 /* AXSimpleTableViewCell.h in Headers */,
 				CD7139131FA3571A005C5214 /* AXDefaultVC.h in Headers */,
-				CD54980C1FA3381D002AEDE7 /* AXSimpleTableView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,8 +270,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDDFA39E1FB559C3004C99D5 /* MyTableViewCell.xib in Resources */,
 				CD5497E31FA33733002AEDE7 /* LaunchScreen.storyboard in Resources */,
 				CD5497E01FA33733002AEDE7 /* Assets.xcassets in Resources */,
+				CDDFA3961FB54A00004C99D5 /* MyTableView.json in Resources */,
 				CD5497DE1FA33733002AEDE7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,11 +292,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD71390D1FA34784005C5214 /* Test2.m in Sources */,
 				CD5497DB1FA33733002AEDE7 /* ViewController.m in Sources */,
-				CD7139101FA347DB005C5214 /* Test1.m in Sources */,
 				CD5497E61FA33733002AEDE7 /* main.m in Sources */,
 				CD5497D81FA33733002AEDE7 /* AppDelegate.m in Sources */,
+				CDDFA3991FB54B91004C99D5 /* MyTableView.m in Sources */,
+				CDDFA39D1FB559C3004C99D5 /* MyTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,8 +304,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD5498121FA344C1002AEDE7 /* AXSimpleTableViewCell.m in Sources */,
-				CD54980D1FA3381D002AEDE7 /* AXSimpleTableView.m in Sources */,
 				CD5498051FA3379B002AEDE7 /* AXTableViewCell.m in Sources */,
 				CD5498011FA3378D002AEDE7 /* AXTableView.m in Sources */,
 				CD5498091FA337A8002AEDE7 /* AXTableModel.m in Sources */,

@@ -17,21 +17,21 @@
 - (NSString *)detail;
 
 - (NSString *)target;
-
++ (instancetype)modelWithDictionary:(NSDictionary *)dict;
 @end
 
 @protocol AXTableSectionModel <NSObject>
 @required
 
-- (NSArray<AXTableRowModel> *)rows;
-
+- (NSMutableArray<AXTableRowModel> *)rows;
++ (instancetype)modelWithDictionary:(NSDictionary *)dict;
 @end
 
 @protocol AXTableModel <NSObject>
 @required
 
-- (NSArray<NSObject<AXTableSectionModel> *> *)sections;
-
+- (NSMutableArray<NSObject<AXTableSectionModel> *> *)sections;
++ (instancetype)modelWithDictionary:(NSDictionary *)dict;
 @end
 
 #pragma mark - cell
@@ -61,7 +61,7 @@
 /**
  预加载的数据源
  */
-- (NSArray *)tableViewPreloadDataSource;
+- (NSObject<AXTableModel> *)tableViewPreloadDataSource;
 
 @required
 /**
@@ -69,7 +69,7 @@
  
  @param dataSource 加载完成的回调
  */
-- (void)tableViewDataSource:(void (^)(NSObject<AXTableModel> *))dataSource;
+- (void)tableViewDataSource:(void (^)(NSObject<AXTableModel> *dataSource))dataSource;
 
 #pragma mark delegate
 
@@ -81,7 +81,8 @@
  */
 - (void)tableViewDidLoadFinished:(UITableView<AXTableView> *)tableView;
 
-
+- (UITableViewCell<AXTableViewCell> *)tableViewRegisterReuseableCell;
+- (NSObject<AXTableModel> *)tableViewRegisterTableModel;
 /**
  即将设置模型
  
@@ -90,6 +91,38 @@
  @param model 数据模型
  */
 - (void)indexPath:(NSIndexPath *)indexPath cell:(UITableViewCell<AXTableViewCell> *)cell willSetModel:(NSObject<AXTableRowModel> *)model;
+
+/**
+ cell的icon
+ 
+ @param indexPath 索引
+ @param icon icon
+ */
+- (void)indexPath:(NSIndexPath *)indexPath icon:(void (^)(UIImage *icon))icon;
+
+/**
+ accessory type 默认是">"
+ 
+ @param indexPath 索引
+ @param accessoryType accessory type
+ */
+- (void)indexPath:(NSIndexPath *)indexPath accessoryType:(void (^)(UITableViewCellAccessoryType accessoryType))accessoryType;
+
+/**
+ 是否显示开关、开关默认状态
+ 
+ @param indexPath 索引
+ @param showSwitch 是否显示开关、开关默认状态
+ */
+- (void)indexPath:(NSIndexPath *)indexPath showSwitch:(void (^)(BOOL show, BOOL open))showSwitch;
+
+/**
+ 开关状态改变事件
+ 
+ @param indexPath 索引
+ @param sender 开关
+ */
+- (void)indexPath:(NSIndexPath *)indexPath switchValueChanged:(UISwitch *)sender;
 
 
 /**

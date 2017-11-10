@@ -1,16 +1,14 @@
 //
-//  Test1.m
+//  MyTableView.m
 //  AXTableKitDemo
 //
-//  Created by xaoxuu on 27/10/2017.
+//  Created by xaoxuu on 10/11/2017.
 //  Copyright © 2017 xaoxuu. All rights reserved.
 //
 
-#import "Test1.h"
-#import <AXTableKit/AXTableKit.h>
+#import "MyTableView.h"
 
-
-@implementation Test1
+@implementation MyTableView
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -19,10 +17,5 @@
     // Drawing code
 }
 */
-
-- (void)test{
-    
-}
-
 
 @end

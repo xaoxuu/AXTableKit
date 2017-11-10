@@ -1,0 +1,80 @@
+{
+    "title":"设置",
+    "headerTitle":"this is table header",
+    "headerHeight":0,
+    "footerTitle":"this is table footer",
+    "footerHeight":0,
+    "sections":[
+        {
+            "headerTitle":"基本信息",
+            "headerHeight":44,
+            "footerTitle":"",
+            "footerHeight":0,
+            "rowHeight":44,
+            "rows":[
+                {
+                    "title":"关于",
+                    "detail":"about axkit",
+                    "icon":"setting_about",
+                    "target":"AboutVC"
+                },
+                {
+                    "title":"博客",
+                    "detail":"xaoxuu's blog",
+                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "target":"BlogVC"
+                },
+                {
+                    "title":"博客2",
+                    "detail":"xaoxuu's blog",
+                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "target":"BlogListVC"
+                },
+                {
+                    "title":"项目",
+                    "detail":"xaoxuu's proj",
+                    "icon":"setting_projects",
+                    "target":"ProjectsVC"
+                }
+
+
+            ]
+        },
+        {
+            "headerTitle":"基本信息",
+            "headerHeight":44,
+            "footerTitle":"",
+            "footerHeight":0,
+            "rowHeight":44,
+            "rows":[
+                {
+                    "title":"关于",
+                    "detail":"about axkit",
+                    "icon":"setting_about",
+                    "target":"AboutVC"
+                },
+                {
+                    "title":"博客",
+                    "detail":"xaoxuu's blog",
+                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "target":"BlogVC"
+                },
+                {
+                    "title":"博客2",
+                    "detail":"xaoxuu's blog",
+                    "icon":"https://xaoxuu.com/images/avatar.png",
+                    "target":"BlogListVC"
+                },
+                {
+                    "title":"项目",
+                    "detail":"xaoxuu's proj",
+                    "icon":"setting_projects",
+                    "target":"ProjectsVC"
+                }
+
+                
+            ]
+        },
+        
+    ]
+}

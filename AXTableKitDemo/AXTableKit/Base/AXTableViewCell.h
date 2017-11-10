@@ -12,8 +12,11 @@
 
 @interface AXTableViewCell : UITableViewCell <AXTableViewCell>
 
-- (void)setModel:(NSObject<AXTableRowModel> *)model;
-- (NSObject<AXTableRowModel> *)model;
+// @xaoxuu: model
+@property (strong, readwrite, nonatomic) NSObject<AXTableRowModel> *model;
+
+// @xaoxuu: image
+@property (strong, readonly, nonatomic) UIImage *icon;
 
 
 @end

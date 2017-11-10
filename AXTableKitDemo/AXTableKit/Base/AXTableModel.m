@@ -8,6 +8,76 @@
 
 #import "AXTableModel.h"
 
+@implementation NSDictionary (AXTableModelExtension)
+
+- (NSDictionary *)dictionaryValueForKey:(NSString *)key{
+    NSObject *obj = self[key];
+    if ([obj isKindOfClass:[NSDictionary class]]) {
+        return (NSDictionary *)obj;
+    } else {
+        return [NSDictionary dictionary];
+    }
+}
+
+- (NSArray *)arrayValueForKey:(NSString *)key{
+    NSObject *obj = self[key];
+    if ([obj isKindOfClass:[NSArray class]]) {
+        return (NSArray *)obj;
+    } else {
+        return [NSArray array];
+    }
+}
+
+- (NSString *)stringValueForKey:(NSString *)key{
+    NSObject *obj = self[key];
+    if ([obj isKindOfClass:[NSString class]]) {
+        return (NSString *)obj;
+    } else {
+        return @"";
+    }
+}
+
+- (double)doubleValueForKey:(NSString *)key{
+    NSObject *obj = self[key];
+    if ([obj isKindOfClass:[NSString class]]) {
+        NSString *strValue = (NSString *)obj;
+        return strValue.doubleValue;
+    } else if ([obj isKindOfClass:[NSNumber class]]) {
+        NSNumber *numValue = (NSNumber *)obj;
+        return numValue.doubleValue;
+    } else {
+        return 0;
+    }
+}
+
+- (NSInteger)integerValueForKey:(NSString *)key{
+    NSObject *obj = self[key];
+    if ([obj isKindOfClass:[NSString class]]) {
+        NSString *strValue = (NSString *)obj;
+        return strValue.integerValue;
+    } else if ([obj isKindOfClass:[NSNumber class]]) {
+        NSNumber *numValue = (NSNumber *)obj;
+        return numValue.integerValue;
+    } else {
+        return 0;
+    }
+}
+
+- (BOOL)boolValueForKey:(NSString *)key{
+    NSObject *obj = self[key];
+    if ([obj isKindOfClass:[NSString class]]) {
+        NSString *strValue = (NSString *)obj;
+        return strValue.boolValue;
+    } else if ([obj isKindOfClass:[NSNumber class]]) {
+        NSNumber *numValue = (NSNumber *)obj;
+        return numValue.boolValue;
+    } else {
+        return 0;
+    }
+}
+
+@end
+
 @implementation AXTableModel
 
 - (instancetype)init{
@@ -28,6 +98,23 @@
         section(model);
     }
     [self.sections addObject:model];
+}
+
+
++ (instancetype)modelWithDictionary:(NSDictionary *)dict{
+    AXTableModel *model = [[AXTableModel alloc] init];
+    if (dict) {
+        model.title = [dict stringValueForKey:@"title"];
+        model.headerTitle = [dict stringValueForKey:@"headerTitle"];
+        model.headerHeight = [dict doubleValueForKey:@"headerHeight"];
+        model.footerTitle = [dict stringValueForKey:@"footerTitle"];
+        model.footerHeight = [dict doubleValueForKey:@"footerHeight"];
+        NSArray<NSDictionary *> *sections = [dict arrayValueForKey:@"sections"];
+        [sections enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [model.sections addObject:[AXTableSectionModel modelWithDictionary:obj]];
+        }];
+    }
+    return model;
 }
 
 @end
@@ -55,6 +142,22 @@
     [self.rows addObject:model];
 }
 
+
++ (instancetype)modelWithDictionary:(NSDictionary *)dict{
+    AXTableSectionModel *model = [[AXTableSectionModel alloc] init];
+    if (dict) {
+        model.headerTitle = [dict stringValueForKey:@"headerTitle"];
+        model.headerHeight = [dict doubleValueForKey:@"headerHeight"];
+        model.footerTitle = [dict stringValueForKey:@"footerTitle"];
+        model.footerHeight = [dict doubleValueForKey:@"footerHeight"];
+        NSArray<NSDictionary *> *rows = [dict arrayValueForKey:@"rows"];
+        [rows enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [model.rows addObject:[AXTableRowModel modelWithDictionary:obj]];
+        }];
+    }
+    return model;
+}
+
 @end
 
 @implementation AXTableRowModel
@@ -67,6 +170,18 @@
         _target = @"";
     }
     return self;
+}
+
+
++ (instancetype)modelWithDictionary:(NSDictionary *)dict{
+    AXTableRowModel *model = [[AXTableRowModel alloc] init];
+    if (dict) {
+        model.title = [dict stringValueForKey:@"title"];
+        model.detail = [dict stringValueForKey:@"detail"];
+        model.icon = [dict stringValueForKey:@"icon"];
+        model.target = [dict stringValueForKey:@"target"];
+    }
+    return model;
 }
 
 @end

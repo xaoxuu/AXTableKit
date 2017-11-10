@@ -8,12 +8,11 @@
 
 #import "ViewController.h"
 #import <AXTableKit/AXTableKit.h>
-#import "Test2.h"
-
+#import "MyTableView.h"
 
 @interface ViewController ()
 
-@property (strong, nonatomic) Test2 *tableView;
+@property (strong, nonatomic) MyTableView *tableView;
 
 @end
 
@@ -23,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.tableView = [[Test2 alloc] initWithFrame:self.view.bounds];
+    self.tableView = [[MyTableView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.tableView];
 }
 

@@ -20,5 +20,4 @@ FOUNDATION_EXPORT const unsigned char AXTableKitVersionString[];
 #import "AXTableViewCell.h"
 #import "AXTableModel.h"
 
-#import "AXSimpleTableView.h"
-#import "AXSimpleTableViewCell.h"
+

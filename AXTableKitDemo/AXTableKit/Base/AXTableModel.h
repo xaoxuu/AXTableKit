@@ -95,6 +95,8 @@
  */
 - (void)addRow:(void (^)(AXTableRowModel *row))row;
 
++ (instancetype)modelWithDictionary:(NSDictionary *)dict;
+
 @end
 
 
@@ -119,5 +121,7 @@
  跳转到某控制器
  */
 @property (copy, nonatomic) NSString *target;
+
++ (instancetype)modelWithDictionary:(NSDictionary *)dict;
 
 @end

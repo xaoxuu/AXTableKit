@@ -1,15 +1,14 @@
 //
-//  AXSimpleTableViewCell.m
-//  AXTableKit
+//  MyTableViewCell.m
+//  AXTableKitDemo
 //
-//  Created by xaoxuu on 27/10/2017.
+//  Created by xaoxuu on 10/11/2017.
 //  Copyright © 2017 xaoxuu. All rights reserved.
 //
 
-#import "AXSimpleTableViewCell.h"
+#import "MyTableViewCell.h"
 
-
-@implementation AXSimpleTableViewCell
+@implementation MyTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
