@@ -70,7 +70,19 @@
                     "detail":"xaoxuu's proj",
                     "icon":"help",
                     "target":"ProjectsVC"
-                }
+                    },
+                    {
+                    "title":"博客2",
+                    "detail":"xaoxuu's blog",
+                    "icon":"help",
+                    "target":"BlogListVC"
+                    },
+                    {
+                    "title":"帮助",
+                    "detail":"xaoxuu's proj",
+                    "icon":"help",
+                    "target":"ProjectsVC"
+                    }
 
                 
             ]

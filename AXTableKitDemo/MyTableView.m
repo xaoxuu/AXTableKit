@@ -33,29 +33,17 @@
 
 - (void)ax_tableViewDataSource:(void (^)(AXTableModelType *))dataSource{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        dataSource([self ax_loadDataSourceFromBundle]);
+//        dataSource([self loadDataSourceFromBundle]);
     });
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        dataSource([self ax_loadDataSourceFromPath:[[NSBundle mainBundle] pathForResource:@"MyTableView2" ofType:@"json"]]);
+        dataSource([self loadDataSourceFromPath:[[NSBundle mainBundle] pathForResource:@"MyTableView2" ofType:@"json"]]);
     });
 }
 
-//- (void)ax_tableViewCell:(AXTableViewCellType *)cell willSetModel:(AXTableRowModelType *)model forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.section == 1) {
-//        if ([model respondsToSelector:@selector(setAccessoryType:)]) {
-//            model.accessoryType = UITableViewCellAccessoryCheckmark;
-//        }
-//    } else if (indexPath.section == 2) {
-//        if ([model respondsToSelector:@selector(setAccessoryType:)]) {
-//            model.accessoryType = UITableViewCellAccessoryDetailButton;
-//        }
-//    } else if (indexPath.section == 3) {
-//        if ([model respondsToSelector:@selector(setAccessoryType:)]) {
-//            model.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-//        }
-//    }
-//    
-//}
-
+- (void)ax_tableViewCell:(AXTableViewCellType *)cell willSetModel:(AXTableRowModelType *)model forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row <= 4) {
+        model.accessoryType = indexPath.row;
+    }
+}
 
 @end

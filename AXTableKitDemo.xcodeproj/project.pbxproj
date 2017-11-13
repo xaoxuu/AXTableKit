@@ -22,7 +22,6 @@
 		CD5498051FA3379B002AEDE7 /* AXTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5498031FA3379B002AEDE7 /* AXTableViewCell.m */; };
 		CD5498081FA337A8002AEDE7 /* AXTableModel.h in Headers */ = {isa = PBXBuildFile; fileRef = CD5498061FA337A8002AEDE7 /* AXTableModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CD5498091FA337A8002AEDE7 /* AXTableModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CD5498071FA337A8002AEDE7 /* AXTableModel.m */; };
-		CD7139161FA3575F005C5214 /* AXTableKitProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CD7139151FA3575F005C5214 /* AXTableKitProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CDDFA3961FB54A00004C99D5 /* MyTableView.json in Resources */ = {isa = PBXBuildFile; fileRef = CDDFA3951FB54A00004C99D5 /* MyTableView.json */; };
 		CDDFA3991FB54B91004C99D5 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA3981FB54B91004C99D5 /* MyTableView.m */; };
 		CDDFA39D1FB559C3004C99D5 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CDDFA39B1FB559C3004C99D5 /* MyTableViewCell.m */; };
@@ -77,7 +76,6 @@
 		CD5498031FA3379B002AEDE7 /* AXTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXTableViewCell.m; sourceTree = "<group>"; };
 		CD5498061FA337A8002AEDE7 /* AXTableModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXTableModel.h; sourceTree = "<group>"; };
 		CD5498071FA337A8002AEDE7 /* AXTableModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AXTableModel.m; sourceTree = "<group>"; };
-		CD7139151FA3575F005C5214 /* AXTableKitProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AXTableKitProtocol.h; sourceTree = "<group>"; };
 		CDDFA3951FB54A00004C99D5 /* MyTableView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MyTableView.json; sourceTree = "<group>"; };
 		CDDFA3971FB54B91004C99D5 /* MyTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTableView.h; sourceTree = "<group>"; };
 		CDDFA3981FB54B91004C99D5 /* MyTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTableView.m; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 		CD54980E1FA33829002AEDE7 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				CD7139151FA3575F005C5214 /* AXTableKitProtocol.h */,
 				CD5497FE1FA3378D002AEDE7 /* AXTableView.h */,
 				CD5497FF1FA3378D002AEDE7 /* AXTableView.m */,
 				CD5498021FA3379B002AEDE7 /* AXTableViewCell.h */,
@@ -192,7 +189,6 @@
 				CD5498041FA3379B002AEDE7 /* AXTableViewCell.h in Headers */,
 				CD5498081FA337A8002AEDE7 /* AXTableModel.h in Headers */,
 				CD5498001FA3378D002AEDE7 /* AXTableView.h in Headers */,
-				CD7139161FA3575F005C5214 /* AXTableKitProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
