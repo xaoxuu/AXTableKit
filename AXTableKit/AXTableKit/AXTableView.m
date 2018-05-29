@@ -8,10 +8,40 @@
 
 #import "AXTableView.h"
 #import "AXTableViewCell.h"
-#import "UIView+AXExtension.h"
-#import "NSString+AXExtension.h"
-#import "UIApplication+AXExtension.h"
-#import "ThemeKit.h"
+#import <SafariServices/SafariServices.h>
+//#import "UIView+AXExtension.h"
+//#import "NSString+AXExtension.h"
+//#import "UIApplication+AXExtension.h"
+//#import "AXThemeKit.h"
+
+static inline BOOL isURLString(NSString *str){
+    if ([str containsString:@"http"] && [str containsString:@"://"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+static inline UIViewController *controllerForView(UIResponder *responder){
+    while ((responder = [responder nextResponder])){
+        if ([responder isKindOfClass: [UIViewController class]])
+            return (UIViewController *)responder;
+    }
+    return nil;
+}
+
+static inline void ax_presentSafariViewControllerWithURL(NSURL *URL, UIViewController *vc){
+    if (@available(iOS 9.0, *)) {
+        // on newer versions
+        SFSafariViewController *safari = [[SFSafariViewController alloc] initWithURL:URL];
+        [vc presentViewController:safari animated:YES completion:nil];
+    } else {
+        // Fallback on earlier versions
+        [[UIApplication sharedApplication] openURL:URL];
+    }
+}
+
+
 
 @interface AXTableView () <UIScrollViewDelegate>
 
@@ -109,7 +139,7 @@
 - (void)reloadDataSource:(void (^)(AXTableModelType *))completion{
     if ([self respondsToSelector:@selector(ax_tableView:dataSource:)]) {
         [self ax_tableView:self dataSource:^(AXTableModelType *model) {
-            _model = model;
+            self.model = model;
             if (completion) {
                 completion(model);
             }
@@ -121,7 +151,7 @@
     if ([self respondsToSelector:@selector(ax_tableView:dataSource:)]) {
         __weak typeof(self) weakSelf = self;
         [self ax_tableView:self dataSource:^(AXTableModelType *model) {
-            _model = model;
+            self.model = model;
             [weakSelf reloadData];
         }];
     }
@@ -291,7 +321,7 @@
         if ([self respondsToSelector:@selector(ax_tableView:willPushViewController:fromRowAtIndexPath:)]) {
             [self ax_tableView:self willPushViewController:targetVC fromRowAtIndexPath:indexPath];
         }
-        [self.controller.navigationController pushViewController:targetVC animated:YES];
+        [controllerForView(self).navigationController pushViewController:targetVC animated:YES];
     };
     block_push();
 }
@@ -309,8 +339,8 @@
     if (vc) {
         vc.title = NSLocalizedString(model.title, nil);
         [self _indexPath:indexPath tryPush:vc withModel:model];
-    } else if (model.target.isURLString) {
-        [UIApplication ax_presentSafariViewControllerWithURL:model.target.absoluteURL fromViewController:self.controller];
+    } else if (isURLString(model.target)) {
+        ax_presentSafariViewControllerWithURL([NSURL URLWithString:model.target], controllerForView(self));
     }
 }
 

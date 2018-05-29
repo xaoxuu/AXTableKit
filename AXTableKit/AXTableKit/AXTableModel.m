@@ -7,7 +7,61 @@
 //
 
 #import "AXTableModel.h"
-#import "NSDictionary+AXExtension.h"
+
+//static inline NSDictionary *dictionaryValueForKey(NSDictionary *dict, NSString *key){
+//    NSObject *obj = dict[key];
+//    if ([obj isKindOfClass:[NSDictionary class]]) {
+//        return (NSDictionary *)obj;
+//    } else if ([obj isKindOfClass:[NSString class]]) {
+//        NSString *strValue = (NSString *)obj;
+//        NSData *data = [strValue dataUsingEncoding:NSUTF8StringEncoding];
+//        if (data) {
+//            return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//        } else {
+//            return [NSDictionary dictionary];
+//        }
+//    } else {
+//        return [NSDictionary dictionary];
+//    }
+//}
+
+static inline NSArray *arrayValueForKey(NSDictionary *dict, NSString *key){
+    NSObject *obj = dict[key];
+    if ([obj isKindOfClass:[NSArray class]]) {
+        return (NSArray *)obj;
+    } else if ([obj isKindOfClass:[NSString class]]) {
+        NSString *strValue = (NSString *)obj;
+        NSData *data = [strValue dataUsingEncoding:NSUTF8StringEncoding];
+        if (data) {
+            return [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        } else {
+            return [NSArray array];
+        }
+    } else {
+        return [NSArray array];
+    }
+}
+
+static inline NSString *stringValueForKey(NSDictionary *dict, NSString *key){
+    NSObject *obj = dict[key];
+    if ([obj isKindOfClass:[NSString class]]) {
+        return (NSString *)obj;
+    } else {
+        return @"";
+    }
+}
+static inline NSNumber *numberValueForKey(NSDictionary *dict, NSString *key){
+    NSObject *obj = dict[key];
+    if ([obj isKindOfClass:[NSString class]]) {
+        NSString *strValue = (NSString *)obj;
+        return @(strValue.doubleValue);
+    } else if ([obj isKindOfClass:[NSNumber class]]) {
+        return (NSNumber *)obj;
+    } else {
+        return @0;
+    }
+}
+
 
 @implementation AXTableModel
 
@@ -35,12 +89,12 @@
 + (instancetype)modelWithDictionary:(NSDictionary *)dict{
     AXTableModel *model = [[AXTableModel alloc] init];
     if (dict) {
-        model.title = [dict stringValueForKey:@"title"];
+        model.title = stringValueForKey(dict, @"title");
 //        model.headerTitle = [dict stringValueForKey:@"headerTitle"];
 //        model.headerHeight = [dict doubleValueForKey:@"headerHeight"];
 //        model.footerTitle = [dict stringValueForKey:@"footerTitle"];
 //        model.footerHeight = [dict doubleValueForKey:@"footerHeight"];
-        NSArray<NSDictionary *> *sections = [dict arrayValueForKey:@"sections"];
+        NSArray<NSDictionary *> *sections = arrayValueForKey(dict, @"sections");
         [sections enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [model.sections addObject:[AXTableSectionModel modelWithDictionary:obj]];
         }];
@@ -77,12 +131,12 @@
 + (instancetype)modelWithDictionary:(NSDictionary *)dict{
     AXTableSectionModel *model = [[AXTableSectionModel alloc] init];
     if (dict) {
-        model.headerTitle = [dict stringValueForKey:@"headerTitle"];
-        model.headerHeight = [dict doubleValueForKey:@"headerHeight"];
-        model.footerTitle = [dict stringValueForKey:@"footerTitle"];
-        model.footerHeight = [dict doubleValueForKey:@"footerHeight"];
-        model.rowHeight = [dict doubleValueForKey:@"rowHeight"];
-        NSArray<NSDictionary *> *rows = [dict arrayValueForKey:@"rows"];
+        model.headerTitle = stringValueForKey(dict, @"headerTitle");
+        model.headerHeight = numberValueForKey(dict, @"headerHeight").doubleValue;
+        model.footerTitle = stringValueForKey(dict, @"footerTitle");
+        model.footerHeight = numberValueForKey(dict, @"footerHeight").doubleValue;
+        model.rowHeight = numberValueForKey(dict, @"rowHeight").doubleValue;
+        NSArray<NSDictionary *> *rows = arrayValueForKey(dict, @"rows");
         [rows enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [model.rows addObject:[AXTableRowModel modelWithDictionary:obj]];
         }];
@@ -111,12 +165,12 @@
 + (instancetype)modelWithDictionary:(NSDictionary *)dict{
     AXTableRowModel *model = [[AXTableRowModel alloc] init];
     if (dict) {
-        model.title = [dict stringValueForKey:@"title"];
-        model.detail = [dict stringValueForKey:@"detail"];
-        model.icon = [dict stringValueForKey:@"icon"];
-        model.target = [dict stringValueForKey:@"target"];
-        model.cmd = [dict stringValueForKey:@"cmd"];
-        CGFloat rowHeight = [dict doubleValueForKey:@"rowHeight"];
+        model.title = stringValueForKey(dict, @"title");
+        model.detail = stringValueForKey(dict, @"detail");
+        model.icon = stringValueForKey(dict, @"icon");
+        model.target = stringValueForKey(dict, @"target");
+        model.cmd = stringValueForKey(dict, @"cmd");
+        CGFloat rowHeight = numberValueForKey(dict, @"rowHeight").doubleValue;
         if (rowHeight) {
             model.rowHeight = rowHeight;
         }

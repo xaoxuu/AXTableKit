@@ -7,8 +7,17 @@
 //
 
 #import "AXTableViewCell.h"
-#import "UIThemeManager.h"
-#import "NSString+AXExtension.h"
+
+static inline BOOL isURLString(NSString *str){
+    if ([str containsString:@"http"] && [str containsString:@"://"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+
+
 
 @interface AXTableViewCell ()
 
@@ -65,7 +74,7 @@
     self.detailTextLabel.font = [self fontForDetail];
     self.textLabel.text = model.title;
     self.detailTextLabel.text = model.detail;
-    if (model.icon.isURLString) {
+    if (isURLString(model.icon)) {
         if ([self.delegate respondsToSelector:@selector(ax_tableViewCell:needsLoadWebImageFromPath:forImageView:)]) {
             [self.delegate ax_tableViewCell:self needsLoadWebImageFromPath:model.icon forImageView:self.imageView];
         }
@@ -79,10 +88,12 @@
 }
 
 - (UIFont *)fontForTitle{
-    return [UIThemeManager sharedInstance].font.customNormal;
+//    return [UIThemeManager sharedInstance].font.customNormal;
+    return [UIFont systemFontOfSize:14];
 }
 - (UIFont *)fontForDetail{
-    return [UIThemeManager sharedInstance].font.customSmall;
+//    return [UIThemeManager sharedInstance].font.customSmall;
+    return [UIFont systemFontOfSize:13];
 }
 
 - (UIImage *)imageWithPath:(NSString *)path{
