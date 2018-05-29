@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  AXTableKitDemo
+//  AXTableKit
 //
-//  Created by xaoxuu on 27/10/2017.
-//  Copyright © 2017 xaoxuu. All rights reserved.
+//  Created by xaoxuu on 2018/5/29.
+//  Copyright © 2018 Titan Studio. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

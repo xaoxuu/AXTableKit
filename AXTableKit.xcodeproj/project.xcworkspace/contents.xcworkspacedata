@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:AXTableKitDemo.xcodeproj">
+      location = "self:AXTableKit.xcodeproj">
    </FileRef>
 </Workspace>
