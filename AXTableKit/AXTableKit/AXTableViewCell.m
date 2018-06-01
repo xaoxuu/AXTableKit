@@ -70,8 +70,7 @@ static inline BOOL isURLString(NSString *str){
 
 - (void)setModel:(NSObject<AXTableRowModel> *)model{
     _model = model;
-    self.textLabel.font = [self fontForTitle];
-    self.detailTextLabel.font = [self fontForDetail];
+    
     self.textLabel.text = model.title;
     self.detailTextLabel.text = model.detail;
     if (isURLString(model.icon)) {
@@ -85,15 +84,6 @@ static inline BOOL isURLString(NSString *str){
         self.accessoryType = model.accessoryType;
     }
     
-}
-
-- (UIFont *)fontForTitle{
-//    return [UIThemeManager sharedInstance].font.customNormal;
-    return [UIFont systemFontOfSize:14];
-}
-- (UIFont *)fontForDetail{
-//    return [UIThemeManager sharedInstance].font.customSmall;
-    return [UIFont systemFontOfSize:13];
 }
 
 - (UIImage *)imageWithPath:(NSString *)path{
