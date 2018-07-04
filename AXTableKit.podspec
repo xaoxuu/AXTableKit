@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
 # pod trunk push AXTableKit.podspec
 
   s.name         = "AXTableKit"
-  s.version      = "0.0.3"
+  s.version = "0.0.3"
   s.summary      = "快速生成TableView的工具，可用于测试功能，也可用于app中的设置列表。"
   s.homepage     = "http://xaoxuu.com"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
